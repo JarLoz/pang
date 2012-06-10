@@ -35,4 +35,41 @@ MainMenu::MenuResult MainMenu::Show(sf::RenderWindow& window)
 	return GetMenuResponse(window);
 }
 
+MainMenu::MenuResult MainMenu::HandleClick(int x, int y)
+{
+	std::list<MenuItem>::iterator it;
+	for (it = menuItems.begin(); it != menuItems.end(); it++)
+	{
+		sf::Rect<int> menuItemRect = (*it).rect;
+		if( menuItemRect.Bottom > y
+				&& menuItemRect.Top < y
+				&& menuItemRect.Left < x
+				&& menuItemRect.Right > x )
+		{
+			return (*it).action;
+		}
 
+	}
+
+	return Nothing;
+}
+
+MainMenu::MenuResult MainMenu::GetMenuResponse(sf::RenderWindow& window)
+{
+	sf::Event menuEvent;
+
+	while(true)
+	{
+		while(window.GetEvent(menuEvent))
+		{
+			if(menuEvent.Type == sf::Event::MouseButtonPressed)
+			{
+				return HandleClick(menuEvent.MouseButton.X, menuEvent.MouseButton.Y);
+			}
+			if(menuEvent.Type == sf::Event::Closed)
+			{
+				return Exit;
+			}
+		}
+	}
+}

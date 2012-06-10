@@ -12,7 +12,7 @@ void SplashScreen::Show(sf::RenderWindow & renderWindow)
 	sf::Sprite sprite(image);
 
 	renderWindow.Draw(sprite);
-	renderWindow.display();
+	renderWindow.Display();
 
 	sf::Event event;
 
