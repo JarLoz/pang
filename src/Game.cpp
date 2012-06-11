@@ -10,6 +10,9 @@ void Game::Start(void)
 
 	_mainWindow.Create(sf::VideoMode(1024,768,32),"Pang!");
 
+	_player1.Load("images/paddle.png");
+	_player1.SetPosition((1024/2)-45,700);
+
 	_gameState = Game::ShowingSplash;
 
 	while(!IsExiting())
@@ -46,6 +49,7 @@ void Game::GameLoop(){
 				while(_mainWindow.GetEvent(currentEvent))
 				{
 					_mainWindow.Clear(sf::Color(sf::Color(0,0,0)));
+					_player1.Draw(_mainWindow);
 					_mainWindow.Display();
 
 					if(currentEvent.Type == sf::Event::Closed)
@@ -85,3 +89,4 @@ void Game::ShowMenu()
 }
 Game::GameState Game::_gameState = Uninitialized;
 sf::RenderWindow Game::_mainWindow;
+PlayerPaddle Game::_player1;
