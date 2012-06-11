@@ -10,9 +10,12 @@ void Game::Start(void)
 
 	_mainWindow.Create(sf::VideoMode(1024,768,32),"Pang!");
 
-	_player1.Load("images/paddle.png");
-	_player1.SetPosition((1024/2)-45,700);
+	PlayerPaddle *player1 = new PlayerPaddle();
 
+	player1->Load("images/paddle.png");
+	player1->SetPosition((1024/2)-45,700);
+
+	_gameObjectManager.Add("Paddle1",player1);
 	_gameState = Game::ShowingSplash;
 
 	while(!IsExiting())
@@ -31,6 +34,9 @@ bool Game::IsExiting(){
 }
 
 void Game::GameLoop(){
+	sf::Event currentEvent;
+	_mainWindow.GetEvent(currentEvent);
+
 	switch(_gameState)
 	{
 		case Game::ShowingMenu:
@@ -45,22 +51,20 @@ void Game::GameLoop(){
 			}
 		case Game::Playing:
 			{
-				sf::Event currentEvent;
-				while(_mainWindow.GetEvent(currentEvent))
+
+				_mainWindow.Clear(sf::Color(sf::Color(0,0,0)));
+				_gameObjectManager.DrawAll(_mainWindow);
+				_mainWindow.Display();
+
+
+				if(currentEvent.Type == sf::Event::Closed)
+					_gameState = Game::Exiting;
+
+				if(currentEvent.Type == sf::Event::KeyPressed)
 				{
-					_mainWindow.Clear(sf::Color(sf::Color(0,0,0)));
-					_player1.Draw(_mainWindow);
-					_mainWindow.Display();
-
-					if(currentEvent.Type == sf::Event::Closed)
-						_gameState = Game::Exiting;
-
-					if(currentEvent.Type == sf::Event::KeyPressed)
-					{
-						if(currentEvent.Key.Code == sf::Key::Escape) ShowMenu();
-					}
-
+					if(currentEvent.Key.Code == sf::Key::Escape) ShowMenu();
 				}
+
 				break;
 			}
 	}
@@ -89,4 +93,4 @@ void Game::ShowMenu()
 }
 Game::GameState Game::_gameState = Uninitialized;
 sf::RenderWindow Game::_mainWindow;
-PlayerPaddle Game::_player1;
+GameObjectManager Game::_gameObjectManager;
