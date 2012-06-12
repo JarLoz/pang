@@ -47,6 +47,11 @@ const sf::Input& Game::GetInput()
 	return _mainWindow.GetInput();
 }
 
+const GameObjectManager& Game::GetGameObjectManager()
+{
+	return _gameObjectManager;
+}
+
 void Game::GameLoop(){
 	sf::Event currentEvent;
 	_mainWindow.GetEvent(currentEvent);

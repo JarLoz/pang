@@ -37,6 +37,29 @@ void VisibleGameObject::Update(float elapsedTime)
 {
 }
 
+float VisibleGameObject::GetHeight() const
+{
+	return _sprite.GetSize().y;
+}
+
+float VisibleGameObject::GetWidth() const
+{
+	return _sprite.GetSize().x;
+}
+
+sf::Rect<float> VisibleGameObject::GetBoundingRect() const
+{
+	sf::Vector2f size = _sprite.GetSize();
+	sf::Vector2f position = _sprite.GetPosition();
+
+	return sf::Rect<float>(
+			position.x - size.x/2,
+			position.y - size.y/2,
+			position.x + size.x/2,
+			position.y + size.y/2
+			);
+}
+
 void VisibleGameObject::SetPosition(float x, float y)
 {
 	if (_isLoaded)
