@@ -1,7 +1,7 @@
 CC = g++
 
-pang: Game.o pang.o MainMenu.o SplashScreen.o VisibleGameObject.o PlayerPaddle.o GameObjectManager.o
-	$(CC) -o pang Game.o pang.o MainMenu.o SplashScreen.o VisibleGameObject.o PlayerPaddle.o GameObjectManager.o -lsfml-graphics -lsfml-window -lsfml-system
+pang: Game.o pang.o MainMenu.o SplashScreen.o VisibleGameObject.o PlayerPaddle.o GameBall.o GameObjectManager.o
+	$(CC) -o pang Game.o pang.o MainMenu.o SplashScreen.o VisibleGameObject.o PlayerPaddle.o GameBall.o GameObjectManager.o -lsfml-graphics -lsfml-window -lsfml-system
 	mv *.o src/
 
 Game.o: src/Game.cpp
@@ -21,6 +21,9 @@ VisibleGameObject.o: src/VisibleGameObject.cpp
 
 PlayerPaddle.o: src/PlayerPaddle.o
 	$(CC) -c src/PlayerPaddle.cpp
+
+GameBall.o: src/GameBall.o
+	$(CC) -c src/GameBall.cpp
 
 GameObjectManager.o: src/GameObjectManager.o
 	$(CC) -c src/GameObjectManager.cpp

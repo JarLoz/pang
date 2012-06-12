@@ -8,14 +8,18 @@ void Game::Start(void)
 	if(_gameState != Uninitialized)
 		return;
 
-	_mainWindow.Create(sf::VideoMode(1024,768,32),"Pang!");
+	_mainWindow.Create(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGTH,32),"Pang!");
+
+	//_mainWindow.SetFramerateLimit(60);
 
 	PlayerPaddle *player1 = new PlayerPaddle();
+	player1->SetPosition((SCREEN_WIDTH/2),700);
 
-	player1->Load("images/paddle.png");
-	player1->SetPosition((1024/2)-45,700);
+	GameBall *ball = new GameBall();
+	ball->SetPosition((SCREEN_WIDTH/2),(SCREEN_HEIGTH/2)-15);
 
 	_gameObjectManager.Add("Paddle1",player1);
+	_gameObjectManager.Add("Ball",ball);
 	_gameState = Game::ShowingSplash;
 
 	while(!IsExiting())
@@ -31,6 +35,16 @@ bool Game::IsExiting(){
 		return true;
 	else
 		return false;
+}
+
+sf::RenderWindow& Game::GetWindow()
+{
+	return _mainWindow;
+}
+
+const sf::Input& Game::GetInput()
+{
+	return _mainWindow.GetInput();
 }
 
 void Game::GameLoop(){
@@ -53,7 +67,10 @@ void Game::GameLoop(){
 			{
 
 				_mainWindow.Clear(sf::Color(sf::Color(0,0,0)));
+
+				_gameObjectManager.UpdateAll();
 				_gameObjectManager.DrawAll(_mainWindow);
+
 				_mainWindow.Display();
 
 
