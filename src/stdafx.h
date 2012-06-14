@@ -11,3 +11,4 @@
 #include <cassert>
 #include <list>
 #include <cmath>
+#include <stdexcept>

@@ -1,7 +1,7 @@
 CC = g++
 
-pang: Game.o pang.o MainMenu.o SplashScreen.o VisibleGameObject.o PlayerPaddle.o GameBall.o GameObjectManager.o ServiceLocator.o SFMLSoundProvider.o
-	$(CC) -o pang Game.o pang.o MainMenu.o SplashScreen.o VisibleGameObject.o PlayerPaddle.o GameBall.o GameObjectManager.o ServiceLocator.o SFMLSoundProvider.o -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
+pang: Game.o pang.o MainMenu.o SplashScreen.o VisibleGameObject.o PlayerPaddle.o GameBall.o GameObjectManager.o ServiceLocator.o SFMLSoundProvider.o SoundFileCache.o
+	$(CC) -o pang Game.o pang.o MainMenu.o SplashScreen.o VisibleGameObject.o PlayerPaddle.o GameBall.o GameObjectManager.o ServiceLocator.o SFMLSoundProvider.o SoundFileCache.o -lsfml-audio -lsfml-graphics -lsfml-window -lsfml-system
 	mv *.o src/
 
 Game.o: src/Game.cpp
@@ -33,6 +33,9 @@ SFMLSoundProvider.o: src/SFMLSoundProvider.cpp
 
 ServiceLocator.o: src/ServiceLocator.cpp
 	$(CC) -c src/ServiceLocator.cpp
+
+SoundFileCache.o: src/SoundFileCache.cpp
+	$(CC) -c src/SoundFileCache.cpp
 
 clean:
 	rm src/*.o && rm pang
