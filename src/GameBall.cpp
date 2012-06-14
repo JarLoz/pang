@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameBall.h"
 #include "Game.h"
+#include "ServiceLocator.h"
 
 
 GameBall::GameBall() :
@@ -155,6 +156,8 @@ float GameBall::ResolvePlayerPaddleCollision(PlayerPaddle* player1, float moveBy
 		}
 
 		_velocity += 5.0f;
+
+		ServiceLocator::GetAudio()->PlaySound("audio/kaboom.wav");
 	}
 
 	return moveByY;

@@ -2,6 +2,8 @@
 #include "Game.h"
 #include "SplashScreen.h"
 #include "MainMenu.h"
+#include "SFMLSoundProvider.h"
+#include "ServiceLocator.h"
 
 void Game::Start(void)
 {
@@ -9,6 +11,13 @@ void Game::Start(void)
 		return;
 
 	_mainWindow.Create(sf::VideoMode(SCREEN_WIDTH,SCREEN_HEIGTH,32),"Pang!");
+
+
+	SFMLSoundProvider *soundProvider = new SFMLSoundProvider();
+
+	ServiceLocator::RegisterServiceLocator(soundProvider);
+
+	ServiceLocator::GetAudio()->PlaySong("audio/Soundtrack.ogg",true);
 
 	//_mainWindow.SetFramerateLimit(60);
 
