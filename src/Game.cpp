@@ -27,8 +27,12 @@ void Game::Start(void)
 	GameBall *ball = new GameBall();
 	ball->SetPosition((SCREEN_WIDTH/2),(SCREEN_HEIGTH/2)-15);
 
+	GameTile *tile = new GameTile();
+	tile->SetPosition((SCREEN_WIDTH/2),(SCREEN_HEIGTH/2)-40);
+
 	_gameObjectManager.Add("Paddle1",player1);
 	_gameObjectManager.Add("Ball",ball);
+	_gameObjectManager.Add("Tile",tile);
 	_gameState = Game::ShowingSplash;
 
 	while(!IsExiting())

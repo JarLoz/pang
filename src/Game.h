@@ -4,6 +4,7 @@
 #include "SFML/Graphics.hpp"
 #include "PlayerPaddle.h"
 #include "GameBall.h"
+#include "GameTile.h"
 #include "GameObjectManager.h"
 
 class Game
