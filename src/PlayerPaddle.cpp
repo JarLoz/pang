@@ -30,11 +30,11 @@ void PlayerPaddle::Update(float elapsedTime)
 {
 	if(Game::GetInput().IsKeyDown(sf::Key::Left))
 	{
-		_velocity -= 10.0f;
+		_velocity -= 30.0f;
 	}
 	else if(Game::GetInput().IsKeyDown(sf::Key::Right))
 	{
-		_velocity += 10.0f;
+		_velocity += 30.0f;
 	}
 	else if(Game::GetInput().IsKeyDown(sf::Key::Down))
 	{
@@ -64,16 +64,16 @@ void PlayerPaddle::reduceSpeed()
 {
 	if(_velocity > 0)
 	{
-		if(_velocity < 10.0f)
+		if(_velocity < 30.0f)
 			_velocity = 0.0f;
 		else
-			_velocity -= 10.0f;
+			_velocity -= 30.0f;
 	}
 	else if (_velocity < 0)
 	{
-		if(_velocity > -10.0f)
+		if(_velocity > -30.0f)
 			_velocity = 0.0f;
 		else
-			_velocity += 10.0f;
+			_velocity += 30.0f;
 	}
 }

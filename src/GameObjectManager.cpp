@@ -16,7 +16,7 @@ void GameObjectManager::Add(std::string name, VisibleGameObject* gameObject)
 	_gameObjects.insert(std::pair<std::string,VisibleGameObject*>(name,gameObject));
 }
 
-void GameObjectManager::Remove(std::string name)
+void GameObjectManager::Remove(std::string name) 
 {
 	std::map<std::string, VisibleGameObject*>::iterator results = _gameObjects.find(name);
 	if (results != _gameObjects.end() )

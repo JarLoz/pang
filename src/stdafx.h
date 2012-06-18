@@ -12,3 +12,4 @@
 #include <list>
 #include <cmath>
 #include <stdexcept>
+#include <algorithm>

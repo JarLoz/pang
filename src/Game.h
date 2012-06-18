@@ -15,7 +15,7 @@ class Game
 		const static sf::Input& GetInput();
 		const static int SCREEN_WIDTH = 1024;
 		const static int SCREEN_HEIGTH = 768;
-		const static GameObjectManager& GetGameObjectManager();
+		static GameObjectManager& GetGameObjectManager();
 	private:
 		static bool IsExiting();
 		static void GameLoop();

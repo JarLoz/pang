@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "GameTile.h"
 
-GameTile::GameTile()
+GameTile::GameTile():
+	isDestroyed(false)
 {
 	Load("images/Tile.png");
 	assert(IsLoaded());
@@ -12,4 +13,15 @@ GameTile::GameTile()
 
 GameTile::~GameTile()
 {
+}
+
+void GameTile::Draw(sf::RenderWindow & window)
+{
+	if(!isDestroyed)
+		VisibleGameObject::Draw(window);
+}
+
+void GameTile::SetDestroyed(bool state)
+{
+	isDestroyed = state;
 }

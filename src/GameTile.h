@@ -7,4 +7,11 @@ class GameTile :
 	public:
 		GameTile();
 		~GameTile();
+
+		void Draw(sf::RenderWindow& rw);
+
+		void SetDestroyed(bool state);
+
+	private:
+		bool isDestroyed;
 };

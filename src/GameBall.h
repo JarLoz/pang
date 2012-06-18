@@ -15,12 +15,19 @@ class GameBall :
 		float _angle;
 		float _elapsedTimeSinceStart;
 
+		enum Direction {UP, DOWN, LEFT, RIGHT};
+
 		float LinearVelocityX(float angle);
 		float LinearVelocityY(float angle);
 
-		float ResolveSideCollision(float moveByX);
-		float ResolveTopCollision(float moveByY);
+		void ResolveSideCollision(float& moveByX);
+		void ResolveTopCollision(float& moveByY);
 		void ResolveBottomCollision(float moveByY);
 
-		float ResolvePlayerPaddleCollision(PlayerPaddle* player1, float moveByY);
+		void ResolvePlayerPaddleCollision(PlayerPaddle* player1, float& moveByY, float& moveByX);
+		void ResolveGameTileCollision(float& moveByY, float& moveByX);
+
+		Direction GetCollisionDirection(sf::Rect<float>, sf::Rect<float>, float, float);
+
+
 };
