@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "VisibleGameObject.h"
+#include "ImageFileCache.h"
 
 VisibleGameObject::VisibleGameObject() :
 	_isLoaded(false)
@@ -12,7 +13,7 @@ VisibleGameObject::~VisibleGameObject()
 
 void VisibleGameObject::Load(std::string filename)
 {
-	if(_image.LoadFromFile(filename) == false)
+/*	if(_image.LoadFromFile(filename) == false)
 	{
 		_filename = "";
 		_isLoaded = false;
@@ -22,7 +23,13 @@ void VisibleGameObject::Load(std::string filename)
 		_filename = filename;
 		_sprite.SetImage(_image);
 		_isLoaded = true;
-	}
+	}*/
+
+	_filename = filename;
+	_sprite = ImageFileCache::GetSprite(filename);
+	_isLoaded = true;
+
+
 }
 
 void VisibleGameObject::Draw(sf::RenderWindow & renderWindow)
