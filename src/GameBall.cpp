@@ -56,7 +56,7 @@ void GameBall::Update(float elapsedTime)
 
 	//Collision with game tile
 	
-	ResolveGameTileCollision(moveByY, moveByX);
+	//ResolveGameTileCollision(moveByY, moveByX);
 
 
 

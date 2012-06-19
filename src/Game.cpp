@@ -30,9 +30,13 @@ void Game::Start(void)
 	GameTile *tile = new GameTile();
 	tile->SetPosition((SCREEN_WIDTH/2),(SCREEN_HEIGTH/2)-50);
 
+	GameTile *tile2 = new GameTile();
+	tile2->SetPosition(tile->GetPosition().x + tile->GetWidth(),(SCREEN_HEIGTH/2)-50);
+
 	_gameObjectManager.Add("Paddle1",player1);
 	_gameObjectManager.Add("Ball",ball);
-	_gameObjectManager.Add("Tile",tile);
+	_gameObjectManager.AddTile("tile1",tile);
+	_gameObjectManager.AddTile("tile2",tile2);
 
 	_gameState = Game::ShowingSplash;
 
@@ -86,7 +90,6 @@ void Game::GameLoop(){
 			{
 
 				_mainWindow.Clear(sf::Color(sf::Color(0,0,0)));
-
 				_gameObjectManager.UpdateAll();
 				_gameObjectManager.DrawAll(_mainWindow);
 
