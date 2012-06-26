@@ -16,5 +16,6 @@ class PlayerPaddle :
 	private:
 		float _velocity; // --left ++ right
 		float _maxVelocity;
-		void reduceSpeed();
+		float _acceleration;
+		void reduceSpeed(float elapsedTime);
 };
